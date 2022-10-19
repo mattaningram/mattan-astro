@@ -1,0 +1,36 @@
+---
+// Component Imports
+import MainHead from '../components/MainHead.astro';
+import LandingSidebar from '../components/LandingSidebar.astro';
+import GridSpacer from '../components/GridSpacer.astro';
+import PortfolioPreview from '../components/PortfolioPreview.astro';
+import type { Project } from '../types';
+
+// Data Fetching: List all Markdown posts in the repo.
+const projects = await Astro.glob<Project>('./project/**/*.md');
+const featuredProject = projects[0]!;
+
+// Full Astro Component Syntax:
+// https://docs.astro.build/core-concepts/astro-components/
+---
+
+<html lang="en">
+	<head>
+		<MainHead
+			title="Mattan Ingram"
+			description="Product designer and CSS developer"
+		/>
+	</head>
+	<body>
+		<LandingSidebar />
+		<main class="main-content">
+		</main>
+	</body>
+</html>
+
+<style lang="scss">
+:global(.MainFooter) {
+	grid-column: center;
+	grid-row: footer;
+}
+</style>

@@ -1,0 +1,44 @@
+---
+import GridSpacer from '../components/GridSpacer.astro';
+---
+
+<footer class="MainFooter">
+  <div class="footer-item">
+    I made this.
+  </div>
+	<GridSpacer flexGrow="true" />
+  <div class="contact-links">
+		<a class="footer-item" href="mailto:mattaningram@gmail.com" target="_blank"><span class="button__text">Say Hi</span></a>
+		<a class="footer-item link-icon" href="https://github.com/mattaningram" target="_blank">Github</a>
+		<a class="footer-item link-icon" href="https://twitter.com/mattaningram" target="_blank">Twitter</a>
+		<a class="footer-item link-icon" href="https://instagram.com/mattaningram" target="_blank">Instagram</a>
+		<a class="footer-item link-icon" href="https://open.spotify.com/user/mattaningram" target="_blank">Spotify</a>
+	</div>
+</footer>
+
+<style lang="scss">
+.MainFooter {
+	height: 3rem;
+	display: flex;
+	align-items: stretch;
+	justify-content: space-between;
+	font-size: 0.875rem;
+	gap: 1px;
+}
+
+.footer-item {
+	background-color: var(--background-color);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.contact-links {
+	display: flex;
+	align-items: stretch;
+	gap: 1px;
+}
+
+.link-icon {
+}
+</style>

@@ -1,0 +1,35 @@
+:root {
+  /* Colors */
+  --gray-00: #090514;
+  --gray-100: #120f1b;
+  --gray-200: #211e2c;
+  --gray-300: #322e41;
+  --gray-400: #48445a;
+  --gray-500: #605c72;
+  --gray-600: #7e7a8f;
+  --gray-700: #9b96ac;
+  --gray-800: #b8b4c8;
+  --gray-900: #d6d2e5;
+  --gray-1000: #f2efff;
+}
+
+html {
+  --background-color: var(--gray-200);
+  color: var(--gray-900);
+  background-color: var(--background-color);
+  font-family: "Figtree", "system-ui", sans-serif;
+}
+
+body {
+  &::before {
+    content: '';
+    background-color: var(--gray-300);
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+  }
+}
+
+.bg-color {
+  background-color: var(--background-color);
+}

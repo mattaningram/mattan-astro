@@ -1,0 +1,41 @@
+---
+import GridSpacer from '../components/GridSpacer.astro';
+import MainFooter from '../components/MainFooter.astro';
+---
+
+<div class="LandingSidebar sidebar-grid">
+	<GridSpacer />
+	<div class="sidebar-content">
+		<GridSpacer height="4rem" />
+		<div class="bg-color">M</div>
+		<GridSpacer height="4rem" />
+		<h1 class="name bg-color">Mattan Ingram</h1>
+		<GridSpacer height="4rem" />
+		<p class="description bg-color">
+			Born in NYC and raised on the <span class="gif-hover gif-hover-mac">1984 Macintosh</span>,
+			<span class="gif-hover gif-hover-topgun">Top Gun</span>, and
+			<span class="gif-hover gif-hover-sesame">Sesame Street</span>. I believe in building better products by combining
+			design, development, and analytics. Take me to your startup, I'll make your users happy.
+		</p>
+		<GridSpacer flexGrow="true" />
+		<MainFooter />
+	</div>
+	<GridSpacer />
+</div>
+
+<style lang="scss">
+.LandingSidebar {
+	height: 100%;
+}
+
+.name {
+	line-height: 1;
+	position: relative;
+}
+
+.description {
+	font-size: 1.5rem;
+	line-height: 1.5;
+	font-weight: 300;
+}
+</style>
