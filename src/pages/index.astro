@@ -2,6 +2,8 @@
 // Component Imports
 import MainHead from '../components/MainHead.astro';
 import LandingSidebar from '../components/LandingSidebar.astro';
+import GridSpacer from '../components/GridSpacer.astro';
+
 ---
 
 <html lang="en">
@@ -13,9 +15,18 @@ import LandingSidebar from '../components/LandingSidebar.astro';
 	</head>
 	<body>
 		<div class="cursor-gradient-bg"></div>
-		<LandingSidebar />
-		<main class="main-content">
-		</main>
+		<div class="main-layout">
+			<LandingSidebar />
+			<main class="main-content column-grid">
+				<GridSpacer />
+				<div class="flex-column gap-1px">
+					<GridSpacer height="4rem" />
+					<h3 class="bg-color">I worked here</h3>
+					<GridSpacer flexGrow="true" />
+				</div>
+				<GridSpacer />
+			</main>
+		</div>
 	</body>
 </html>
 
@@ -24,10 +35,6 @@ import LandingSidebar from '../components/LandingSidebar.astro';
 </script>
 
 <style lang="scss">
-:global(.LandingSidebar) {
-	width: 34rem;
-}
-
 .cursor-gradient-bg {
 	position: fixed;
 	inset: 0;
@@ -37,5 +44,9 @@ import LandingSidebar from '../components/LandingSidebar.astro';
     var(--gray-500),
     transparent 40%
   );
+}
+
+.main-content {
+	--column-gutter: clamp(1rem, 6vw, 3rem);
 }
 </style>

@@ -3,7 +3,7 @@ import GridSpacer from '../components/GridSpacer.astro';
 import MainFooter from '../components/MainFooter.astro';
 ---
 
-<div class="LandingSidebar sidebar-grid">
+<div class="LandingSidebar column-grid">
 	<GridSpacer />
 	<div class="flex-column gap-1px">
 		<GridSpacer height="4rem" />
@@ -26,6 +26,7 @@ import MainFooter from '../components/MainFooter.astro';
 <style lang="scss">
 .LandingSidebar {
 	height: 100%;
+	width: 100%;
 }
 
 .name {
