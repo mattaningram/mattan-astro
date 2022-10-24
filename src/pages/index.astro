@@ -2,16 +2,6 @@
 // Component Imports
 import MainHead from '../components/MainHead.astro';
 import LandingSidebar from '../components/LandingSidebar.astro';
-import GridSpacer from '../components/GridSpacer.astro';
-import PortfolioPreview from '../components/PortfolioPreview.astro';
-import type { Project } from '../types';
-
-// Data Fetching: List all Markdown posts in the repo.
-const projects = await Astro.glob<Project>('./project/**/*.md');
-const featuredProject = projects[0]!;
-
-// Full Astro Component Syntax:
-// https://docs.astro.build/core-concepts/astro-components/
 ---
 
 <html lang="en">
@@ -22,15 +12,30 @@ const featuredProject = projects[0]!;
 		/>
 	</head>
 	<body>
+		<div class="cursor-gradient-bg"></div>
 		<LandingSidebar />
 		<main class="main-content">
 		</main>
 	</body>
 </html>
 
+<script>
+	import '../scripts/mousePosition.js'
+</script>
+
 <style lang="scss">
-:global(.MainFooter) {
-	grid-column: center;
-	grid-row: footer;
+:global(.LandingSidebar) {
+	width: 34rem;
+}
+
+.cursor-gradient-bg {
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	background: radial-gradient(
+    600px circle at var(--mouse-x) var(--mouse-y), 
+    var(--gray-500),
+    transparent 40%
+  );
 }
 </style>

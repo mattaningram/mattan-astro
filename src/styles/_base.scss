@@ -11,6 +11,10 @@
   --gray-800: #b8b4c8;
   --gray-900: #d6d2e5;
   --gray-1000: #f2efff;
+
+  /* Cursor Position */
+  --mouseX: 0;
+  --mouseY: 0;
 }
 
 html {
@@ -18,16 +22,6 @@ html {
   color: var(--gray-900);
   background-color: var(--background-color);
   font-family: "Figtree", "system-ui", sans-serif;
-}
-
-body {
-  &::before {
-    content: '';
-    background-color: var(--gray-300);
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-  }
 }
 
 .bg-color {

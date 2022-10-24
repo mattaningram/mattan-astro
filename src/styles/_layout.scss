@@ -3,11 +3,13 @@
   display: grid;
   grid-template-columns: var(--gap)[center-start] 1fr [center-end] var(--gap);
   grid-gap: 1px;
-  width: 50%;
 }
 
-.sidebar-content {
+.flex-column {
   display: flex;
   flex-direction: column;
+}
+
+.gap-1px {
   gap: 1px;
 }
