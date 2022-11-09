@@ -1,18 +1,24 @@
 ---
+import { Icon } from 'astro-icon';
 import GridSpacer from '../components/GridSpacer.astro';
 ---
 
 <footer class="MainFooter">
-  <div class="footer-item">
-    I made this.
-  </div>
+	<a class="footer-item" href="mailto:mattaningram@gmail.com" target="_blank"><span class="button__text">Say Hi</span></a>
 	<GridSpacer flexGrow="true" />
   <div class="contact-links">
-		<a class="footer-item" href="mailto:mattaningram@gmail.com" target="_blank"><span class="button__text">Say Hi</span></a>
-		<a class="footer-item link-icon" href="https://github.com/mattaningram" target="_blank">Github</a>
-		<a class="footer-item link-icon" href="https://twitter.com/mattaningram" target="_blank">Twitter</a>
-		<a class="footer-item link-icon" href="https://instagram.com/mattaningram" target="_blank">Instagram</a>
-		<a class="footer-item link-icon" href="https://open.spotify.com/user/mattaningram" target="_blank">Spotify</a>
+		<a class="footer-item link-icon" href="https://github.com/mattaningram" target="_blank">
+			<Icon name="github" />
+		</a>
+		<a class="footer-item link-icon" href="https://twitter.com/mattaningram" target="_blank">
+			<Icon name="twitter" />
+		</a>
+		<a class="footer-item link-icon" href="https://instagram.com/mattaningram" target="_blank">
+			<Icon name="instagram" />
+		</a>
+		<a class="footer-item link-icon" href="https://open.spotify.com/user/mattaningram" target="_blank">
+			<Icon name="spotify" />
+		</a>
 	</div>
 </footer>
 
@@ -40,5 +46,10 @@ import GridSpacer from '../components/GridSpacer.astro';
 }
 
 .link-icon {
+	width: 3rem;
+
+	[astro-icon] {
+		@include size(1.5rem);
+	}
 }
 </style>
