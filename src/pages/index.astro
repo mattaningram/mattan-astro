@@ -3,7 +3,9 @@
 import MainHead from '../components/MainHead.astro';
 import LandingSidebar from '../components/LandingSidebar.astro';
 import GridSpacer from '../components/GridSpacer.astro';
+import ProjectItem from '../components/ProjectItem.astro';
 
+const projectComponents = await Astro.glob('./work/*.astro')
 ---
 
 <html lang="en">
@@ -22,9 +24,14 @@ import GridSpacer from '../components/GridSpacer.astro';
 				<div class="flex-column gap-1px">
 					<GridSpacer height="4rem" />
 					<h3 class="bg-color">I worked here</h3>
+					<GridSpacer height="2rem" />
+					<ul class="project-list" role="list">
+					{ projectComponents.map((projectComponent) => <li class="project-list-item"><ProjectItem projectDetails={projectComponent} /></li>) }
+					</ul>
 					<GridSpacer flexGrow="true" />
 				</div>
 				<GridSpacer />
+
 			</main>
 		</div>
 	</body>
@@ -41,12 +48,18 @@ import GridSpacer from '../components/GridSpacer.astro';
 	z-index: -1;
 	background: radial-gradient(
     100vmax circle at var(--mouse-x) var(--mouse-y), 
-    var(--gray-500),
+    var(--gray-300),
     transparent 40%
   );
 }
 
 .main-content {
 	--column-gutter: clamp(1rem, 6vw, 3rem);
+}
+
+.project-list-item {
+	& + & {
+		margin-top: 1.5rem;
+	}
 }
 </style>

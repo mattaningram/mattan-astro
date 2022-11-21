@@ -1,0 +1,52 @@
+---
+import MainHead from '../components/MainHead.astro'
+import MainFooter from '../components/MainFooter.astro'
+
+const { title, description, year, position, logo, logoOpen, workUrl, color, details } = Astro.props.project
+---
+
+<html lang="en">
+	<head>
+		<MainHead title={title} description={description} />
+	</head>
+	<body>
+		<main>
+			<div class="work-header-wrap">
+				<header class="work-header xyz-in" xyz="fade down duration-5 ease-out-back">
+					<div class="work-header-top">
+						<div class="work-title-wrap xyz-in" xyz="fade left delay-4 ease-out-back">
+							<img class="work-logo" src={`/assets/logos/${logo}`} title={`${title} Logo`} />
+						</div>
+						{ workUrl &&
+							<a
+								class="work-link button--themed xyz-in"
+								xyz="fade small delay-6 ease-out-back"
+								href={ workUrl}
+								target="_blank"
+							>
+								<span class="button__text">View</span>
+							</a>
+						}
+					</div>
+		
+					<div class="work-header-bottom" xyz="fade narrow stagger delay-8 origin-left">
+						<div class="work-detail xyz-in">
+							<span class="xyz-nested" xyz="fade down-100% duration-8 delay-10">{position} &ndash; {year}</span>
+						</div>
+						{ details && details.map((detail) => (
+							<div class="work-detail xyz-in">
+								<span class="xyz-nested" xyz="fade down-100% duration-8 delay-10">{detail}</span>
+							</div>
+						))}
+					</div>
+				</header>
+			</div>
+		
+			<div class="grab-copy-wrap">
+				<p class="grab-copy">{description}</p>
+			</div>
+
+			<slot />
+		</main>
+	</body>
+</html>

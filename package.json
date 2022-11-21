@@ -17,6 +17,8 @@
     "vue": "^3.2.30"
   },
   "devDependencies": {
+    "prettier": "^2.7.1",
+    "prettier-plugin-astro": "^0.7.0",
     "sass": "^1.55.0"
   }
 }

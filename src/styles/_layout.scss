@@ -1,14 +1,14 @@
 .main-layout {
   height: 100%;
   display: grid;
-  grid-template-columns: min(50%, 32rem) 1fr;
+  grid-template-columns: min(50%, 36rem) 1fr;
   gap: 1px;
 }
 
 .column-grid {
   --column-gutter: clamp(1rem, 6vw, 3rem);
   display: grid;
-  grid-template-columns: var(--column-gutter)[center-start] 1fr [center-end] var(--column-gutter);
+  grid-template-columns: var(--column-gutter) [center-start] 1fr [center-end] var(--column-gutter);
   gap: 1px;
 }
 
