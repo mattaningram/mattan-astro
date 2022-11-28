@@ -6,6 +6,7 @@ import GridSpacer from '../components/GridSpacer.astro';
 import ProjectItem from '../components/ProjectItem.astro';
 
 const workItems = await Astro.glob('./work/*.astro')
+const madeItems = await Astro.glob('./made/*.astro')
 ---
 
 <html lang="en">
@@ -23,11 +24,23 @@ const workItems = await Astro.glob('./work/*.astro')
 				<GridSpacer />
 				<div class="flex-column gap-1px">
 					<GridSpacer height="4rem" />
-					<h3 class="bg-color">I worked here</h3>
-					<GridSpacer height="2rem" />
-					<ul class="project-list" role="list">
-						{ workItems.map((workItem) => <li class="project-list-item"><ProjectItem projectDetails={workItem} /></li>) }
-					</ul>
+					<div class="project-columns gap-1px">
+						<div class="flex-column gap-1px">
+							<h3 class="bg-color">I worked here</h3>
+							<GridSpacer height="2rem" />
+							<ul class="project-list" role="list">
+								{ workItems.map((workItem) => <li class="project-list-item"><ProjectItem projectDetails={workItem} /></li>) }
+							</ul>
+						</div>
+						<GridSpacer />
+						<div class="flex-column gap-1px">
+							<h3 class="bg-color">I made these</h3>
+							<GridSpacer height="2rem" />
+							<ul class="project-list" role="list">
+								{ madeItems.map((madeItem) => <li class="project-list-item"><ProjectItem projectDetails={madeItem} /></li>) }
+							</ul>
+						</div>
+					</div>
 					<GridSpacer flexGrow="true" />
 				</div>
 				<GridSpacer />
@@ -55,6 +68,11 @@ const workItems = await Astro.glob('./work/*.astro')
 
 .main-content {
 	--column-gutter: clamp(1rem, 6vw, 3rem);
+}
+
+.project-columns {
+	display: grid;
+	grid-template-columns: 1fr 2rem 1fr;
 }
 
 .project-list {

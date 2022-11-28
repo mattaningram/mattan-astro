@@ -7,7 +7,9 @@ const url = projectDetails.url
 <a class="ProjectItem" href={url}>
 	<div class="ProjectItem__top">
 		<h3 class="screen-reader-only">{title}</h3>
-		<img class="ProjectItem__logo" src={`/logos/${logo}`} alt={`${title} logo`} />
+		<div class="ProjectItem__logo-wrap">
+			<img class="ProjectItem__logo" src={`/logos/${logo}`} alt={`${title} logo`} />
+		</div>
 	</div>
 	<div class="ProjectItem__details">
 		<div class="ProjectItem__detail detail-position">{position}</div>
@@ -36,9 +38,13 @@ const url = projectDetails.url
 	padding: 1.5rem;
 }
 
+.ProjectItem__logo-wrap {
+	display: flex;
+	align-items: center;
+}
+
 .ProjectItem__logo {
-	width: 100%;
-	height: 3rem;
+	height: 2rem;
 	max-width: 200px;
 }
 
