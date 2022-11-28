@@ -1,7 +1,6 @@
 import { defineConfig } from 'astro/config';
 import { fileURLToPath } from 'url';
 import path from 'path';
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -9,8 +8,11 @@ const __dirname = path.dirname(__filename);
 import vue from "@astrojs/vue";
 
 // https://astro.build/config
+import image from "@astrojs/image";
+
+// https://astro.build/config
 export default defineConfig({
-  integrations: [vue()],
+  integrations: [vue(), image()],
   vite: {
     resolve: {
       alias: {
@@ -21,12 +23,12 @@ export default defineConfig({
       devSourcemap: true,
       preprocessorOptions: {
         scss: {
-          additionalData (source, fp) {
+          additionalData(source, fp) {
             if (path.basename(path.dirname(fp)) === 'global') return source;
-            return `@import "@/styles/global/global.scss"; ${source}`
-          },
-        },
-      },
-    },
-  },
+            return `@import "@/styles/global/global.scss"; ${source}`;
+          }
+        }
+      }
+    }
+  }
 });

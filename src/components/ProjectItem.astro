@@ -1,23 +1,26 @@
 ---
 const { projectDetails } = Astro.props
-
-const { title, year, position, color } = projectDetails.projectProps
-
+const { title, year, position, color, logo } = projectDetails.projectProps
 const url = projectDetails.url
 ---
 
 <a class="ProjectItem" href={url}>
-	<h3 class="screen-reader-only">{title}</h3>
-	<div class="ProjectItem__detail detail-position">{position}</div>
-	<div class="ProjectItem__detail detail-year">{year}</div>
+	<div class="ProjectItem__top">
+		<h3 class="screen-reader-only">{title}</h3>
+		<img class="ProjectItem__logo" src={`/logos/${logo}`} alt={`${title} logo`} />
+	</div>
+	<div class="ProjectItem__details">
+		<div class="ProjectItem__detail detail-position">{position}</div>
+		<div class="ProjectItem__detail detail-year">{year}</div>
+	</div>
 </a>
 
 <style lang="scss" define:vars={{ projectColor: color }}>
 .ProjectItem {
-	display: block;
+	display: flex;
+	flex-direction: column;
 	position: relative;
 	color: var(--projectColor);
-	padding: 1.5rem;
 	border: 2px solid var(--projectColor);
 
 	&::before {
@@ -29,10 +32,23 @@ const url = projectDetails.url
 	}
 }
 
+.ProjectItem__top {
+	padding: 1.5rem;
+}
+
+.ProjectItem__logo {
+	width: 100%;
+	height: 3rem;
+	max-width: 200px;
+}
+
+.ProjectItem__details {
+	display: flex;
+	justify-content: space-between;
+}
+
 .ProjectItem__detail {
 	height: 2rem;
-	position: absolute;
-	bottom: 0;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -42,12 +58,10 @@ const url = projectDetails.url
 }
 
 .detail-position {
-	left: 0;
 	border-right: 2px solid var(--projectColor);
 }
 
 .detail-year {
-	right: 0;
 	border-left: 2px solid var(--projectColor);
 }
 </style>

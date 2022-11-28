@@ -5,7 +5,7 @@ import LandingSidebar from '../components/LandingSidebar.astro';
 import GridSpacer from '../components/GridSpacer.astro';
 import ProjectItem from '../components/ProjectItem.astro';
 
-const projectComponents = await Astro.glob('./work/*.astro')
+const workItems = await Astro.glob('./work/*.astro')
 ---
 
 <html lang="en">
@@ -26,7 +26,7 @@ const projectComponents = await Astro.glob('./work/*.astro')
 					<h3 class="bg-color">I worked here</h3>
 					<GridSpacer height="2rem" />
 					<ul class="project-list" role="list">
-					{ projectComponents.map((projectComponent) => <li class="project-list-item"><ProjectItem projectDetails={projectComponent} /></li>) }
+						{ workItems.map((workItem) => <li class="project-list-item"><ProjectItem projectDetails={workItem} /></li>) }
 					</ul>
 					<GridSpacer flexGrow="true" />
 				</div>
@@ -55,6 +55,10 @@ const projectComponents = await Astro.glob('./work/*.astro')
 
 .main-content {
 	--column-gutter: clamp(1rem, 6vw, 3rem);
+}
+
+.project-list {
+	background-color: var(--background-color);
 }
 
 .project-list-item {
