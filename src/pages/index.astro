@@ -1,20 +1,18 @@
 ---
 // Component Imports
-import MainHead from '../components/MainHead.astro';
-import LandingSidebar from '../components/LandingSidebar.astro';
-import GridSpacer from '../components/GridSpacer.astro';
-import ProjectItem from '../components/ProjectItem.astro';
+import MainHead from '../components/MainHead.astro'
+import LandingSidebar from '../components/LandingSidebar.astro'
+import GridSpacer from '../components/GridSpacer.astro'
+import ProjectItem from '../components/ProjectItem.astro'
 
+const jobItem = await Astro.glob('./job/*.astro')
 const workItems = await Astro.glob('./work/*.astro')
 const madeItems = await Astro.glob('./made/*.astro')
 ---
 
 <html lang="en">
 	<head>
-		<MainHead
-			title="Mattan Ingram"
-			description="Product designer and CSS developer"
-		/>
+		<MainHead title="Mattan Ingram" description="Product designer and CSS developer" />
 	</head>
 	<body>
 		<div class="cursor-gradient-bg"></div>
@@ -24,12 +22,28 @@ const madeItems = await Astro.glob('./made/*.astro')
 				<GridSpacer />
 				<div class="flex-column gap-1px">
 					<GridSpacer height="4rem" />
+					<h3 class="bg-color">I work here</h3>
+					<div class="project-columns bg-color gap-1px">
+						<div class="flex-column gap-1px">
+							<GridSpacer height="2rem" />
+							<ProjectItem projectDetails={jobItem[0]} />
+						</div>
+						<GridSpacer width="100%" />
+						<GridSpacer width="100%" />
+					</div>
+					<GridSpacer height="4rem" />
 					<div class="project-columns gap-1px">
 						<div class="flex-column gap-1px">
 							<h3 class="bg-color">I worked here</h3>
 							<GridSpacer height="2rem" />
 							<ul class="project-list" role="list">
-								{ workItems.map((workItem) => <li class="project-list-item"><ProjectItem projectDetails={workItem} /></li>) }
+								{
+									workItems.map((workItem) => (
+										<li class="project-list-item">
+											<ProjectItem projectDetails={workItem} />
+										</li>
+									))
+								}
 							</ul>
 						</div>
 						<GridSpacer />
@@ -37,51 +51,87 @@ const madeItems = await Astro.glob('./made/*.astro')
 							<h3 class="bg-color">I made these</h3>
 							<GridSpacer height="2rem" />
 							<ul class="project-list" role="list">
-								{ madeItems.map((madeItem) => <li class="project-list-item"><ProjectItem projectDetails={madeItem} /></li>) }
+								{
+									madeItems.map((madeItem) => (
+										<li class="project-list-item">
+											<ProjectItem projectDetails={madeItem} />
+										</li>
+									))
+								}
 							</ul>
 						</div>
 					</div>
 					<GridSpacer flexGrow="true" />
 				</div>
 				<GridSpacer />
-
 			</main>
+
+			<script>
+				import '../scripts/mousePosition.js'
+			</script>
+
+			<script>
+				// Get all elements with the class .ProjectItem
+				const projectItems = document.querySelectorAll('.ProjectItem')
+
+				// Define a function to handle the hover event
+				function projectItemHover(event) {
+					// Get the value of the data attribute
+					const projectColor = event.target.getAttribute('data-project-color')
+
+					// Set the CSS variable --cursor-gradient-color to the data attribute value
+					document.documentElement.style.setProperty('--cursor-gradient-color', projectColor)
+				}
+
+				// Add a hover event listener to each .ProjectItem element
+				projectItems.forEach((item) => {
+					item.addEventListener('mouseenter', projectItemHover)
+				})
+
+				// Optionally, you can remove the CSS variable when the mouse leaves the element
+				projectItems.forEach((item) => {
+					item.addEventListener('mouseleave', () => {
+						document.documentElement.style.removeProperty('--cursor-gradient-color')
+					})
+				})
+			</script>
+
+			<style lang="scss">
+				.cursor-gradient-bg {
+					position: fixed;
+					inset: 0;
+					z-index: -1;
+					background: radial-gradient(
+						100vmax circle at var(--mouse-x) var(--mouse-y),
+						var(--cursor-gradient-color, var(--gray-300)),
+						transparent 40%
+					);
+					opacity: var(--cursor-gradient-opacity, 1);
+				}
+
+				body:has(.ProjectItem:hover) {
+					--cursor-gradient-opacity: 0.3;
+				}
+
+				.main-content {
+					--column-gutter: clamp(1rem, 6vw, 3rem);
+				}
+
+				.project-columns {
+					display: grid;
+					grid-template-columns: minmax(0, 1fr) 2rem minmax(0, 1fr);
+				}
+
+				.project-list {
+					background-color: var(--background-color);
+				}
+
+				.project-list-item {
+					& + & {
+						margin-top: 1.5rem;
+					}
+				}
+			</style>
 		</div>
 	</body>
 </html>
-
-<script>
-	import '../scripts/mousePosition.js'
-</script>
-
-<style lang="scss">
-.cursor-gradient-bg {
-	position: fixed;
-	inset: 0;
-	z-index: -1;
-	background: radial-gradient(
-    100vmax circle at var(--mouse-x) var(--mouse-y), 
-    var(--gray-300),
-    transparent 40%
-  );
-}
-
-.main-content {
-	--column-gutter: clamp(1rem, 6vw, 3rem);
-}
-
-.project-columns {
-	display: grid;
-	grid-template-columns: 1fr 2rem 1fr;
-}
-
-.project-list {
-	background-color: var(--background-color);
-}
-
-.project-list-item {
-	& + & {
-		margin-top: 1.5rem;
-	}
-}
-</style>

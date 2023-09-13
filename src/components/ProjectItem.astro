@@ -4,7 +4,7 @@ const { title, year, position, color, logo } = projectDetails.projectProps
 const url = projectDetails.url
 ---
 
-<a class="ProjectItem" href={url}>
+<a class="ProjectItem" href={url} data-project-color={color}>
 	<div class="ProjectItem__top">
 		<h3 class="screen-reader-only">{title}</h3>
 		<div class="ProjectItem__logo-wrap">
@@ -18,56 +18,57 @@ const url = projectDetails.url
 </a>
 
 <style lang="scss" define:vars={{ projectColor: color }}>
-.ProjectItem {
-	display: flex;
-	flex-direction: column;
-	position: relative;
-	color: var(--projectColor);
-	border: 2px solid var(--projectColor);
+	.ProjectItem {
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		color: var(--projectColor);
+		border: 2px solid var(--projectColor);
 
-	&::before {
-		content: '';
-		background-color: var(--projectColor);
-		opacity: 0.05;
-		position: absolute;
-		inset: 0;
+		&::before {
+			content: '';
+			background-color: var(--projectColor);
+			opacity: 0.05;
+			position: absolute;
+			inset: 0;
+		}
 	}
-}
 
-.ProjectItem__top {
-	padding: 1.5rem;
-}
+	.ProjectItem__top {
+		padding: 1.5rem;
+	}
 
-.ProjectItem__logo-wrap {
-	display: flex;
-	align-items: center;
-}
+	.ProjectItem__logo-wrap {
+		display: flex;
+		align-items: center;
+	}
 
-.ProjectItem__logo {
-	height: 2rem;
-	max-width: 200px;
-}
+	.ProjectItem__logo {
+		height: 2rem;
+		max-width: 200px;
+	}
 
-.ProjectItem__details {
-	display: flex;
-	justify-content: space-between;
-}
+	.ProjectItem__details {
+		display: flex;
+		justify-content: space-between;
+	}
 
-.ProjectItem__detail {
-	height: 2rem;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 0.875rem;
-	padding: 0 0.5rem;
-	border-top: 2px solid var(--projectColor);
-}
+	.ProjectItem__detail {
+		height: 2rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 0.75rem;
+		line-height: 1.25;
+		padding: 0 0.5rem;
+		border-top: 2px solid var(--projectColor);
+	}
 
-.detail-position {
-	border-right: 2px solid var(--projectColor);
-}
+	.detail-position {
+		border-right: 2px solid var(--projectColor);
+	}
 
-.detail-year {
-	border-left: 2px solid var(--projectColor);
-}
+	.detail-year {
+		border-left: 2px solid var(--projectColor);
+	}
 </style>

@@ -1,0 +1,17 @@
+---
+import ProjectLayout from '../../layouts/ProjectLayout.astro'
+
+export const projectProps = {
+	title: 'Revel',
+	year: '2022 to Present',
+	position: 'Senior Product Designer',
+	logo: 'revel-logo.svg',
+	workUrl: 'https:/gorevel.com',
+	color: 'rgb(1, 185, 242)',
+	description: 'Revel is electrifying transit in cities.',
+}
+---
+
+<ProjectLayout project={projectProps}>
+	<div>Revel</div>
+</ProjectLayout>
